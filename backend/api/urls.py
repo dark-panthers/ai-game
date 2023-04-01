@@ -1,7 +1,8 @@
 from django.urls import include, path
+from . import views
 
-from .views import PromptView
 
 urlpatterns = [
-    path("prompt/<int:id>", PromptView.as_view()),
+    path('games/', views.getGames, name="games"),
+    path('games/<int:pk>', views.getGame, name="games"),
 ]

@@ -1,4 +1,6 @@
 from django.contrib import admin
-from .models import Prompt
+from .models import Game, Image, ImageSet
 
-admin.site.register(Prompt)
+admin.site.register(Game)
+admin.site.register(Image)
+admin.site.register(ImageSet)
