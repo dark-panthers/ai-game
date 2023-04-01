@@ -58,7 +58,7 @@ def uploadImageSets(request):
 
 
 @api_view(['GET'])
-def randomGameSets(request):
+def imageSets(request):
     imageSets = ImageSet.objects.all()
     serializer = ImageSetSerializer(imageSets, many=True)
     return Response(serializer.data)
