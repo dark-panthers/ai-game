@@ -1,26 +1,37 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import GameBox from './components/GameBox';
 import "./main.css"
 
 const Main = () => {
 
-    const games =[{name:"CITIES",desc:"Siema siema cos tam cos tam",img:""},{name:"DOGS",desc:"Naaajak",img:""},{name:"GEO",desc:"Ltso go",img:""}]
+    const [games,setGames] = useState([]);
 
+    useEffect(() => {
+        fetch("/api/games/?format=json")
+        .then(response => {
+            console.log(response);
+          return response.json()
+        })
+        .then(data => {
+           
+          setGames(data)
+        })
+       }, []);
+
+       
     const getPath= ()=>{
         return process.env.PUBLIC_URL + "logo.png"
     }
 
     return ( <div className='main'>
-        <div>
-        <img className="main-logo" src={getPath()}></img>
+        <div  className="main-logo" >
+        <img src={getPath()} alt="logo"></img>
         </div>
-        
 
         <div className='main-games'>
             { games.map(game=>
                     <GameBox game={game}/>
-                )
-            }
+                )}
         </div> 
     </div>);
 }
