@@ -2,7 +2,6 @@
 
 * {
   font-family: "Black Han Sans", sans-serif;
-
 }
 
 h1 {
@@ -30,18 +29,17 @@ h1 {
   grid-area: title;
   text-align: center;
   text-transform: uppercase;
-
 }
 
 .settings-gear-box {
-    padding: 30px;
-    grid-area: settings-gear;
+  padding: 30px;
+  grid-area: settings-gear;
   /* display: flex; */
 }
 
-.settings-gear-box img{
-    width: 30px;
-    cursor: pointer;
+.settings-gear-box img {
+  width: 30px;
+  cursor: pointer;
 }
 
 .start-box {
@@ -57,27 +55,30 @@ h1 {
   box-shadow: 0 10px gray;
   cursor: pointer;
 }
-.start-box button:active{
-    box-shadow: 0 5px rgb(88, 88, 88);
-    background-color: #008500;
-    transform: translateY(5px);
+.start-box button:active {
+  box-shadow: 0 5px rgb(88, 88, 88);
+  background-color: #008500;
+  transform: translateY(5px);
 }
 
 h3 {
   text-transform: uppercase;
 }
 
-
-.top-right{
-    grid-area: top-right;
-    display: flex;
-    align-items: flex-start;
-    padding-top: 20px;
-    justify-content: space-around;
+.top-right {
+  grid-area: top-right;
+  display: flex;
+  align-items: flex-start;
+  padding-top: 20px;
+  justify-content: space-around;
 }
 
-.top-right img{
-    width: 50px;
-    cursor: pointer;
-    
+.top-right img {
+  width: 50px;
+  cursor: pointer;
+}
+
+Tutorial {
+  position: fixed;
+  top: 1;
 }
