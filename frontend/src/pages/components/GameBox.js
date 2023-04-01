@@ -3,10 +3,12 @@ import "./GameBox.css"
 
 const GameBox = ({game}) => {
     return (
-        <div className='gamebox bcolor-gray'>
+        <div className='gamebox bcolor-gray' >
+            <div className='image'>
             <img src={getPath(game.image)} alt="gameimg"></img>
-            <h1>{game.name}</h1>
-            <h2>{game.description}</h2>
+            </div>
+           
+            <h1 className='color-black'>{game.name.toUpperCase()}</h1>
         </div>
       );
 }

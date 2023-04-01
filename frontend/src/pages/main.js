@@ -9,11 +9,9 @@ const Main = () => {
     useEffect(() => {
         fetch("/api/games/?format=json")
         .then(response => {
-            console.log(response);
           return response.json()
         })
         .then(data => {
-           
           setGames(data)
         })
        }, []);
@@ -30,7 +28,7 @@ const Main = () => {
 
         <div className='main-games'>
             { games.map(game=>
-                    <GameBox game={game}/>
+                    <GameBox game={game} key={game.id}/>
                 )}
         </div> 
     </div>);

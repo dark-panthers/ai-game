@@ -5,7 +5,14 @@
 
 }
 
+html, body, #root,.App{
+  height: 100%;
+  width: 100%;
+}
+
 body {
+  background-color: rgb(226, 226, 226);
+
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -17,5 +24,10 @@ body {
 /*COLORS*/
 .bcolor-gray
 {
-  background-color: gray;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.color-black
+{
+ color:rgba(0, 0, 0, 0.699);
 }
