@@ -6,5 +6,6 @@ urlpatterns = [
     path('games/', views.getGames, name="games"),
     path('games/<int:pk>', views.getGame, name="games"),
     path('imageset/', views.imageSets, name="imageset"),
-    path('images/', views.images, name="images")
+    path('images/', views.images, name="images"),
+    path('upload/<int:id>', views.uploadSet, name="upload")
 ]

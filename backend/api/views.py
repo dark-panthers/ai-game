@@ -3,7 +3,7 @@ from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework.serializers import Serializer
-from .models import Game, Image, ImageSet
+from .models import Game, Image, Set
 from .serializers import GameSerializer, ImageSerializer, ImageSetSerializer
 from api import serializers
 import random
@@ -18,7 +18,7 @@ def getGames(request):
 @api_view(['GET'])
 def getGame(request, pk):
     limit = int(request.GET.get('limit', 5))
-    gameImageSets = ImageSet.objects.filter(game=pk)
+    gameImageSets = Set.objects.filter(game=pk)
     images = []
     
     for imageSet in gameImageSets:
@@ -44,10 +44,10 @@ def images(request):
 
 
 
-@api_view(['POST', 'GET'])
+@api_view(['GET'])
 def imageSets(request):
     if request.method == 'GET':
-        imageSets = ImageSet.objects.all()
+        imageSets = Set.objects.all()
         serializer = ImageSetSerializer(imageSets, many=True)
         return Response(serializer.data)
     serializer = serializers.ImageSetSerializer(data=request.data)
@@ -55,3 +55,15 @@ def imageSets(request):
         serializer.save()
         return Response(serializer.data)
     return Response(serializer.errors)
+
+@api_view(["POST"])
+def uploadSet(request, id):
+    image_set = Set(game_id=id)
+    image_set.save()
+
+    raw_images = request.FILES.getlist('media')
+    for i, raw_image in enumerate(raw_images):
+        img = Image(set_id=image_set.id, prompt=f"Prompt {i}", image=raw_image)
+        img.save()
+
+    return Response({"status": "ok"})

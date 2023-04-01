@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django import forms
-from api.models import Game, Image, ImageSet
+from api.models import Game, Image, Set
 
 
 class GameSerializer(serializers.ModelSerializer):
@@ -17,7 +17,7 @@ class ImageSerializer(serializers.ModelSerializer):
 
 class ImageSetSerializer(serializers.ModelSerializer):
     class Meta:
-        model = ImageSet
+        model = Set
         fields = '__all__'
 
 class ImageFormSerializer(forms.ModelForm):
