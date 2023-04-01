@@ -14,11 +14,18 @@ def getGames(request):
     serializer = GameSerializer(games, many=True)
     return Response(serializer.data)
 
+
 @api_view(['GET'])
 def getGame(request, pk):
+    limit = int(request.GET.get('limit', 5))
     gameImageSets = ImageSet.objects.filter(game=pk)
-    gameImageSet = gameImageSets[random.randint(0, len(gameImageSets)-1)]
-    images = gameImageSet.image.all()
+    images = []
     
-    serializer = ImageSerializer(images, many=True)
+    for imageSet in gameImageSets:
+        images.extend(imageSet.image.all())
+
+    selected_images = random.sample(images, min(limit, len(images)))
+
+    serializer = ImageSerializer(selected_images, many=True)
     return Response(serializer.data)
+

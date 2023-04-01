@@ -18,5 +18,6 @@ class Image(models.Model):
 class ImageSet(models.Model):
     image = models.ManyToManyField(Image)
     game = models.ForeignKey(Game, on_delete=models.CASCADE)
+
     def __str__(self):
         return self.game.name
