@@ -1,0 +1,83 @@
+@import url("https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap");
+
+* {
+  font-family: "Black Han Sans", sans-serif;
+
+}
+
+h1 {
+  font-size: 42px;
+  font-weight: 100;
+  color: rgb(255, 149, 62);
+}
+
+.game-start-page {
+  max-width: 800px;
+  min-height: 500px;
+  margin: 0;
+  border: 5px solid #00cccc;
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 30% 30% 30%;
+  grid-template-areas:
+    ". . . top-right"
+    ". title title settings-gear"
+    ". start start .";
+}
+
+.title-box {
+  grid-area: title;
+  text-align: center;
+  text-transform: uppercase;
+
+}
+
+.settings-gear-box {
+    padding: 30px;
+    grid-area: settings-gear;
+  /* display: flex; */
+}
+
+.settings-gear-box img{
+    width: 30px;
+    cursor: pointer;
+}
+
+.start-box {
+  grid-area: start;
+  text-align: center;
+}
+.start-box button {
+  padding: 20px 50px;
+  color: #fff;
+  background-color: #00aa00;
+  border-radius: 30%;
+  border: none;
+  box-shadow: 0 10px gray;
+  cursor: pointer;
+}
+.start-box button:active{
+    box-shadow: 0 5px rgb(88, 88, 88);
+    background-color: #008500;
+    transform: translateY(5px);
+}
+
+h3 {
+  text-transform: uppercase;
+}
+
+
+.top-right{
+    grid-area: top-right;
+    display: flex;
+    align-items: flex-start;
+    padding-top: 20px;
+    justify-content: space-around;
+}
+
+.top-right img{
+    width: 50px;
+    cursor: pointer;
+    
+}

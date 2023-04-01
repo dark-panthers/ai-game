@@ -1,3 +1,4 @@
+
 import './App.css';
 import Main from './pages/main';
 
@@ -8,5 +9,6 @@ function App() {
     </div>
   );
 }
+
 
 export default App;
