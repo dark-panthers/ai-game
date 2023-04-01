@@ -6,33 +6,36 @@ from rest_framework.serializers import Serializer
 from .models import Game, Image, Set
 from .serializers import GameSerializer, ImageSerializer, ImageSetSerializer
 from api import serializers
+from random import choice, sample
 import random
 
-@api_view(['GET'])
+
+@api_view(["GET"])
 def getGames(request):
     games = Game.objects.all()
     serializer = GameSerializer(games, many=True)
     return Response(serializer.data)
 
 
-@api_view(['GET'])
+@api_view(["GET"])
 def getGame(request, pk):
-    limit = int(request.GET.get('limit', 5))
-    gameImageSets = Set.objects.filter(game=pk)
-    images = []
-    
-    for imageSet in gameImageSets:
-        images.extend(imageSet.image.all())
+    sets_pks = Set.objects.filter(game_id=pk).values_list('pk', flat=True)
+    random_set_pk = choice(sets_pks)
 
-    selected_images = random.sample(images, min(limit, len(images)))
+    images = list(Image.objects.filter(set_id=random_set_pk))
 
+    limit = request.GET.get("limit")
+    limit = min(limit, len(images)) if limit is not None else 4
+
+    selected_images = sample(images, limit)
     serializer = ImageSerializer(selected_images, many=True)
     return Response(serializer.data)
 
 
-@api_view(['GET', 'POST'])
+# unused for now 
+@api_view(["GET", "POST"])
 def images(request):
-    if request.method == 'POST':
+    if request.method == "POST":
         serializer = serializers.ImageFormSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -42,11 +45,10 @@ def images(request):
     serializer = ImageSerializer(images, many=True)
     return Response(serializer.data)
 
-
-
-@api_view(['GET'])
+# unused for now 
+@api_view(["GET"])
 def imageSets(request):
-    if request.method == 'GET':
+    if request.method == "GET":
         imageSets = Set.objects.all()
         serializer = ImageSetSerializer(imageSets, many=True)
         return Response(serializer.data)
@@ -56,14 +58,19 @@ def imageSets(request):
         return Response(serializer.data)
     return Response(serializer.errors)
 
+
 @api_view(["POST"])
 def uploadSet(request, id):
+
     image_set = Set(game_id=id)
     image_set.save()
 
-    raw_images = request.FILES.getlist('media')
-    for i, raw_image in enumerate(raw_images):
-        img = Image(set_id=image_set.id, prompt=f"Prompt {i}", image=raw_image)
+    raw_images = request.FILES.getlist("media")
+    raw_prompts = request.FILES.getlist("prompts")
+    prompts = [p.read().decode() for p in raw_prompts]
+
+    for raw_image, prompt in zip(raw_images, prompts):
+        img = Image(set_id=image_set.id, prompt=prompt, image=raw_image)
         img.save()
 
     return Response({"status": "ok"})
