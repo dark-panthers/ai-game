@@ -16,6 +16,7 @@ class Image(models.Model):
     
 
 class ImageSet(models.Model):
+    name = models.CharField(max_length=100, default="Image Set")
     image = models.ManyToManyField(Image)
     game = models.ForeignKey(Game, on_delete=models.CASCADE)
 

@@ -16,12 +16,16 @@ class ImageSerializer(serializers.ModelSerializer):
 
 
 class ImageSetSerializer(serializers.ModelSerializer):
+    image = ImageSerializer(many=True)
     class Meta:
         model = ImageSet
         fields = '__all__'
 
-class ImageFormSerializer(forms.ModelForm):
+class ImageSetSerializerNames(serializers.ModelSerializer):
     class Meta:
-        model = Image
-        fields = '__all__'
+        model = ImageSet
+        fields = ['name', 'id']
+
+
+
 
