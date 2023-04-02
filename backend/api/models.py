@@ -1,24 +1,17 @@
 from django.db import models
 
+
 class Game(models.Model):
     name = models.CharField(max_length=100)
     description = models.CharField(max_length=1000)
-    image = models.ImageField(upload_to='images/')
+    image = models.ImageField(upload_to="images/")
 
-    def __str__(self):
-        return self.name
-    
-class Image(models.Model):
-    image = models.ImageField(upload_to='images/')
-    prompt = models.CharField(max_length=1000)
-    def __str__(self):
-        return self.prompt
-    
 
-class ImageSet(models.Model):
-    name = models.CharField(max_length=100, default="Image Set")
-    image = models.ManyToManyField(Image)
+class Set(models.Model):
     game = models.ForeignKey(Game, on_delete=models.CASCADE)
 
-    def __str__(self):
-        return self.game.name
+
+class Image(models.Model):
+    set = models.ForeignKey(Set, on_delete=models.CASCADE)
+    prompt = models.CharField(max_length=1000)
+    image = models.ImageField(upload_to="images/")
