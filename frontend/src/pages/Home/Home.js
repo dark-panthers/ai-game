@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import GameBox from './components/GameBox';
-import "./main.css"
+import "./Home.css"
 
-const Main = () => {
+const Home = () => {
 
     const [games,setGames] = useState([]);
 
@@ -21,12 +21,12 @@ const Main = () => {
         return process.env.PUBLIC_URL + "logo.png"
     }
 
-    return ( <div className='main'>
-        <div  className="main-logo" >
+    return ( <div className='home'>
+        <div  className="home-logo" >
         <img src={getPath()} alt="logo"></img>
         </div>
 
-        <div className='main-games'>
+        <div className='home-games'>
             { games.map(game=>
                     <GameBox game={game} key={game.id}/>
                 )}
@@ -34,4 +34,4 @@ const Main = () => {
     </div>);
 }
  
-export default Main;
+export default Home;

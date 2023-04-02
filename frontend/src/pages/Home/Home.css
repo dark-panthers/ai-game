@@ -1,13 +1,23 @@
-.main
+.home
 {
     display: flex;
     flex-direction: column;
 
     height: 100%;
     width: 100%;
+
+
 }
 
-.main-logo
+@media (min-width:1000px)
+{
+    .home-games{
+        padding: 0px 200px;
+    }
+    
+}
+
+.home-logo
 {
     display: flex;
     justify-content: center;
@@ -15,7 +25,7 @@
     margin: 20px;
 }
 
-.main-games
+.home-games
 {
     display: flex;
 

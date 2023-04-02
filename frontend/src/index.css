@@ -24,10 +24,10 @@ body {
 /*COLORS*/
 .bcolor-gray
 {
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(255, 195, 67, 0.2);
 }
 
 .color-black
 {
- color:rgba(0, 0, 0, 0.699);
+ color:black
 }

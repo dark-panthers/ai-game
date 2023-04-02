@@ -10,11 +10,18 @@
     box-shadow: rgba(0, 0, 0, 0.13) 0px 0px 10px 5px;
 
     transition: all 0.1s ease-in-out;
+
+    cursor:pointer;
+}
+
+.gamebox h1{
+    font-weight: bold;
+    margin-top: 10px;
 }
 
 .gamebox .image{
     width: 100%;
-    height: 60%;
+    height: 70%;
     overflow: hidden;
     border-radius: 5px 5px 0px 0px;
 
