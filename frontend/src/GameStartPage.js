@@ -1,11 +1,14 @@
 import "./GameStartPage.css";
 import {useState} from "react"
 import Tutorial from "./Tutorial";
+import GameShare from "./GameShare";
 
 export default function GameStartPage({ game }) {
   console.log(game);
 
   const [tutorialVisibility, setTutorialVisiility] = useState(false);
+  const [GameShareVisibility, setGameShareVisiility] = useState(false);
+
 
   function toggleTutorialVisibility(){
     if(tutorialVisibility === false){
@@ -14,7 +17,15 @@ export default function GameStartPage({ game }) {
     else{
       setTutorialVisiility(false);
     }
-    console.log(tutorialVisibility);
+  }
+
+  function toggleGameShareVisibility(){
+    if(GameShareVisibility === false){
+      setGameShareVisiility(true);
+    }
+    else{
+      setGameShareVisiility(false);
+    }
   }
 
   return (
@@ -22,6 +33,7 @@ export default function GameStartPage({ game }) {
       <div className="title-box">
         <h1 className="title">{game.title}</h1>
         {tutorialVisibility ? <Tutorial onclick={toggleTutorialVisibility} /> : ""}
+        {GameShareVisibility ? <GameShare onclick={toggleGameShareVisibility} link={"https://www.youtube.com/watch?v=dQw4w9WgXcQ"} /> : ""}
       </div>
       <div className="start-box">
         <button>
@@ -32,7 +44,7 @@ export default function GameStartPage({ game }) {
         <img src={process.env.PUBLIC_URL + "/icons/gear.svg"} alt="ooops"></img>
       </div>
       <div className="top-right">
-        <img 
+        <img onClick={toggleGameShareVisibility}
           src={process.env.PUBLIC_URL + "/icons/share.svg"}
           alt="ooops"
         ></img>
