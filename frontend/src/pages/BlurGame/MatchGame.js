@@ -69,7 +69,7 @@ function MatchGame({match, duration, mode}) {
     }
 
     return (
-        <>
+        <div className="outer">
             <CountdownTimer targetDate={endTime} callback={onTimeUp} />
             <div className='blurGameContainer'>
                 { rounds.length > 0 ? (
@@ -85,7 +85,8 @@ function MatchGame({match, duration, mode}) {
 
                 
             </div>
-        </>
+        </div>
+
     )
 }
 
