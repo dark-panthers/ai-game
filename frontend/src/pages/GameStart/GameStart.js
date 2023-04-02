@@ -1,9 +1,9 @@
 import "./GameStart.css";
 import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import Tutorial from "./../../Tutorial";
-import GameShare from "./../../GameShare";
-import GameSettings from "./../../GameSettings";
+import Tutorial from "./components/Tutorial";
+import GameShare from "./components/GameShare";
+import GameSettings from "./components/GameSettings";
 
 export default function GameStart() {
 
