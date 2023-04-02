@@ -72,27 +72,19 @@ function OrderingGame() {
     }
 
     return (
-        <div className="container my-5">
+        <div className="container-xl my-5">
             <div className="row">
-                <div className="col-md-4">
-                    <table className="table table-striped">
-                        <thead>
-                        <tr>
-                            <th>Number</th>
-                            <th>Photo</th>
-                        </tr>
-                        </thead>
-                        <tbody>
+                <div className="col-md-5">
+                    <div className="row">
                         {photos.map((photo, index) => (
-                            <tr>
-                                <td>{index + 1}</td>
-                                <td><img src={photo} alt={`Photo`} className="img-fluid" /></td>
-                            </tr>
+                            <div className="col-6 my-2">
+                                {index + 1}
+                               <img src={photo} alt={`Photo`} className="img-fluid"/>
+                            </div>
                         ))}
-                        </tbody>
-                    </table>
+                    </div>
                 </div>
-                <div className="col-md-4">
+                <div className="col-md-3">
                     <table className="table">
                         <thead>
                         <tr>
