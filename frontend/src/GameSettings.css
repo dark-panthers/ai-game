@@ -32,12 +32,17 @@ header{
 
 
 
-.choice{
+.choice-level{
   display: flex;
   justify-content: space-around;
+  margin-bottom: 30px;
 }
 
 .choice-option{
   padding: 10px;
   cursor: pointer;
+}
+
+.choice-time label{
+  margin-right: 20px;
 }
