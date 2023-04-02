@@ -2,9 +2,11 @@ import json
 from asgiref.sync import async_to_sync
 from channels.generic.websocket import WebsocketConsumer
 from dataclasses import dataclass
-from .models import Session, Player, Round
+from .models import Session, Player
 
-
+@dataclass
+class Round:
+    votes: dict[str, bool]
 
 class PlayerConsumer(WebsocketConsumer):
     def connect(self):
@@ -20,6 +22,11 @@ class PlayerConsumer(WebsocketConsumer):
         Player(session_id=session.id, nick=self.nick).save()
 
         self.accept()
+    
+    def send_layer(self, event):
+        async_to_sync(self.channel_layer.group_send)(
+            self.game_name, {"type": "event", "event": json.dumps(event)}
+        )
 
     def disconnect(self, close_code):
         async_to_sync(self.channel_layer.group_discard)(
@@ -27,21 +34,12 @@ class PlayerConsumer(WebsocketConsumer):
         )
 
     def receive(self, text_data):
-        pass
-        # text_data_json = json.loads(text_data)
-        # type = text_data_json["type"]
-
-        # event = type
-
-        # async_to_sync(self.channel_layer.group_send)(
-        #     self.game_name, {"type": "event", "event": event}
-        # )
-        print(text_data)
+        event = json.loads(text_data)
+        self.send_layer(event)
     
     def event(self, event_message):
         event = event_message['event']
         self.send(text_data=event)
-        print("Revieving")
 
 
 class HostConsumer(WebsocketConsumer):
@@ -58,11 +56,18 @@ class HostConsumer(WebsocketConsumer):
 
         session = Session.objects.get(code=self.game_code)
         Player(session_id=session.id, nick=self.nick).save()
+        
 
+        self.current_round = 0
+        self.rounds = [Round(votes = {})]
+
+        event = {"type": "round", "data": {"round": "data"}}
+        self.send_layer(event)
+
+    def send_layer(self, event):
         async_to_sync(self.channel_layer.group_send)(
-            self.game_name, {"type": "event", "event": "test"}
+            self.game_name, {"type": "event", "event": json.dumps(event)}
         )
-        print("Sending")
 
     def disconnect(self, close_code):
         async_to_sync(self.channel_layer.group_discard)(
@@ -70,21 +75,11 @@ class HostConsumer(WebsocketConsumer):
         )
 
     def receive(self, text_data):
-        print(text_data)
-        pass
-        # text_data_json = json.loads(text_data)
-        # type = text_data_json["type"]
-
-        # event = type
-
-        # async_to_sync(self.channel_layer.group_send)(
-        #     self.game_name, {"type": "event", "event": event}
-        # )
+        event = json.loads(text_data)
+        print(event)
     
     def event(self, event_message):
         event = event_message['event']
-        print("Revieving")
-        print(event)
         self.send(text_data=event)
 
         
