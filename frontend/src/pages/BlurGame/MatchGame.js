@@ -60,6 +60,9 @@ function MatchGame({match, duration, mode}) {
     }
 
     return (
+        <div className="outer">
+
+        
         <div className='blurGameContainer'>
             { rounds.length > 0 ? (
                 <MatchGameRound
@@ -72,7 +75,7 @@ function MatchGame({match, duration, mode}) {
                 <div>Loading...</div>
             )}
 
-            
+           </div> 
         </div>
     )
 }

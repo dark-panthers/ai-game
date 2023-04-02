@@ -1,5 +1,8 @@
+.outer{
+    display: flex;
+    justify-content: center;
+}
 .blurGameContainer{
-    overflow: hidden;
     width: min(100%, 600px);
 }
 .blurGameContainer img{
