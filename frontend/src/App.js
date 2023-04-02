@@ -16,14 +16,14 @@ const game={
 function App() {
   return (
     
-    <div className="App">
+    <div className="App flex">
 
        <BrowserRouter>
        
-      <Routes>
+      <Routes className="flex" >
           <Route index element={<Home />} />
           <Route path="/gamestart/:id" element={<GameStart />} />
-          <Route path="/game/1" element={<MatchGame />} />
+          <Route className="flex-centered" path="/game/1" element={<MatchGame />} />
           <Route path="/game/2" element={<OrderingGame />} />
           <Route path="*" element={<NoPage />} />
       </Routes>

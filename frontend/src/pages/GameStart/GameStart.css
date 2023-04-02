@@ -1,3 +1,8 @@
+.outer{
+  display: flex;
+  height: 100%;
+  align-items: center;
+}
 
 h1 {
   font-size: 42px;
@@ -8,6 +13,7 @@ h1 {
 .game-start-page {
   width: 800px;
   min-height: 500px;
+  max-height: 500px;
   margin: 0;
   border: 5px solid #00cccc;
   border-radius: 10px;
