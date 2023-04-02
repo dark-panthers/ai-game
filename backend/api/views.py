@@ -25,7 +25,7 @@ def getGame(request, pk):
     images = list(Image.objects.filter(set_id=random_set_pk))
 
     limit = request.GET.get("limit")
-    limit = min(limit, len(images)) if limit is not None else 4
+    limit = min(limit if limit is not None else 4, len(images))
 
     selected_images = sample(images, limit)
     serializer = ImageSerializer(selected_images, many=True)
