@@ -16,14 +16,10 @@ const Home = () => {
         })
        }, []);
 
-       
-    const getPath= ()=>{
-        return process.env.PUBLIC_URL + "logo.png"
-    }
 
     return ( <div className='home'>
         <h1  className="home-logo" >
-            GuessWhat
+          <b>GuessWhat</b>  
         </h1>
 
         <div className='home-games'>
