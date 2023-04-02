@@ -3,11 +3,12 @@ from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework.serializers import Serializer
-from .models import Game, Image, Set
+from .models import Game, Image, Set, Session, Player, Vote, Round
 from .serializers import GameSerializer, ImageSerializer, SetSerializer
 from api import serializers
 from random import choice, sample
 import random
+import string
 
 
 @api_view(["GET"])
@@ -81,3 +82,14 @@ def uploadSet(request, id):
         img.save()
 
     return Response({"status": "ok"})
+
+def get_random_string(length):
+    letters = string.ascii_uppercase
+    return  ''.join(random.choice(letters) for i in range(length))
+
+@api_view(['GET'])
+def createMultiplayerSession(request):
+    code = get_random_string(8)
+    Session(code=code).save()
+    return Response({"code": code})
+
