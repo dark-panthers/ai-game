@@ -1,0 +1,36 @@
+.home
+{
+    display: flex;
+    flex-direction: column;
+
+    height: 100%;
+    width: 100%;
+
+
+}
+
+@media (min-width:1000px)
+{
+    .home-games{
+        padding: 0px 200px;
+    }
+    
+}
+
+.home-logo
+{
+    display: flex;
+    justify-content: center;
+
+    margin: 20px;
+
+    color: rgb(196, 196, 196);
+    font-size: 70px;
+    
+}
+
+.home-games
+{
+    display: flex;
+
+}

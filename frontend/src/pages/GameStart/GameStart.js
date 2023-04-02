@@ -1,10 +1,26 @@
+import "./GameStart.css";
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 import "./GameStartPage.css";
 import {useState} from "react"
 import Tutorial from "./Tutorial";
 import GameShare from "./GameShare";
 
-export default function GameStartPage({ game }) {
-  console.log(game);
+export default function Game() {
+
+  const { id } = useParams();
+
+  const [game,setGame] = useState(null);
+
+    useEffect(() => {
+        fetch("/api/game/"+id+"/?format=json")
+        .then(response => {
+          return response.json()
+        })
+        .then(data => {
+          setGame(data)
+        })
+       }, []);
 
   const [tutorialVisibility, setTutorialVisiility] = useState(false);
   const [GameShareVisibility, setGameShareVisiility] = useState(false);
