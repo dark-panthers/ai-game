@@ -1,5 +1,7 @@
 .home
 {
+    overflow: hidden;
+    position:relative;
     display: flex;
     flex-direction: column;
 
@@ -33,4 +35,44 @@
 {
     display: flex;
 
+}
+
+.home-help
+{
+    position:absolute;
+    top:10px;
+    right: 10px;
+
+    cursor: pointer;
+}
+
+.home-help img{
+    width: 30px;
+    height: 30px;
+filter:invert(75%)}
+
+.home-rules
+{
+    position: absolute;
+    padding: 20px;
+    width: 40%;
+    height: 100%;
+    right: calc(-50%);
+    transition: right 1s ease-in-out;
+
+    background-color: rgb(44, 44, 44);
+    
+}
+
+.home-rules>:last-child{
+    position: absolute;
+    right: 10px;
+    top:10px;
+    
+}
+
+.home-rules img:last-child{
+    width: 30px;
+    height: 30px;
+    filter: invert(75%);
 }

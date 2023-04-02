@@ -1,18 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useParams } from "react-router-dom";
 
 const Game = () => {
     const { id } = useParams();
 
     const [game,setGame] = useState(null);
 
-
     useEffect(() => {
-        fetch("/api/games/?format=json")
+        fetch("/api/games/"+id+"?format=json")
         .then(response => {
           return response.json()
         })
         .then(data => {
-          setGames(data)
+            console.log(data)
+          setGame(data)
         })
        }, []);
 

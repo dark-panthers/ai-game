@@ -4,7 +4,7 @@ import Home from './pages/Home/Home';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NoPage from './pages/NoPage';
 import GameStart from './pages/GameStart/GameStart';
-import Game from './pages/GameStart/GameStart';
+import Game from './pages/Game/Game';
 
 const game={
   title:"game title"

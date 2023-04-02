@@ -56,7 +56,7 @@ export default function GameStart() {
   return (
     <div className="game-start-page">
       <div className="title-box">
-        <h1 className="title">{game.title}</h1>
+        <h1 className="title">TITLE</h1>
         {tutorialVisibility ? <Tutorial closeWindow={toggleTutorialVisibility} /> : ""}
         {GameShareVisibility ? <GameShare closeWindow={toggleGameShareVisibility} link={"https://www.youtube.com/watch?v=dQw4w9WgXcQ"} /> : ""}
         {GameSettingsVisibility ? <GameSettings 
