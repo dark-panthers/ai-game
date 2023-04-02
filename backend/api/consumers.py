@@ -2,7 +2,23 @@ import json
 from asgiref.sync import async_to_sync
 from channels.generic.websocket import WebsocketConsumer
 from dataclasses import dataclass
-from .models import Session, Player
+from .models import Session, Player, Set, Image
+from random import choice, sample
+from .serializers import ImageSerializer
+
+def round():
+    pk = 1
+    limit = 4
+    sets_pks = Set.objects.filter(game_id=pk).values_list('pk', flat=True)
+    random_set_pk = choice(sets_pks)
+
+    images = list(Image.objects.filter(set_id=random_set_pk))
+
+    limit = min(limit, len(images))
+
+    selected_images = sample(images, limit)
+    serializer = ImageSerializer(selected_images, many=True)
+    return serializer.data
 
 @dataclass
 class Round:
@@ -61,7 +77,7 @@ class HostConsumer(WebsocketConsumer):
         self.current_round = 0
         self.rounds = [Round(votes = {})]
 
-        event = {"type": "round", "data": {"round": "data"}}
+        event = {"type": "round", "data": round()}
         self.send_layer(event)
 
     def send_layer(self, event):

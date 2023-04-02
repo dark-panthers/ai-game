@@ -9,7 +9,7 @@ export const JoinPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    navigate(`/multiplayer/game/${code}/${nick}`)
+    navigate(`/multiplayer/game/${code}/${nick}/player`)
   }
 
   return (

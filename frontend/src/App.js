@@ -25,7 +25,7 @@ function App() {
           <Route path="/multiplayer/join" element={<JoinPage />} />
           <Route path="/multiplayer/create" element={<CreatePage />} />
           <Route
-            path="/multiplayer/game/:code/:nick"
+            path="/multiplayer/game/:code/:nick/:type"
             element={<MultiplayerGame />}
           />
           <Route path="*" element={<NoPage />} />

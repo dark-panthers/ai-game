@@ -8,12 +8,18 @@ export const CreatePage = () => {
 
   useEffect(() => {
     // todo ask for join code
-    setCode("FLAS8DF73");
+    fetch("/api/multiplayer/create?format=json")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data)
+        setCode(data.code)
+      });
+    // setCode("FLAS8DF73");
   }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate(`/multiplayer/game/${code}/${nick}`);
+    navigate(`/multiplayer/game/${code}/${nick}/host`);
   };
 
   return (
@@ -31,9 +37,7 @@ export const CreatePage = () => {
           onChange={(v) => setNick(v.target.value)}
         />
       </div>
-      <button type="submit">
-        Create game!
-      </button>
+      <button type="submit">Create game!</button>
     </form>
   );
 };

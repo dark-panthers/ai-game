@@ -29,6 +29,7 @@ def createGame(request):
     return Response(serializer.errors)
 
 
+
 @api_view(["GET"])
 def getGame(request, pk):
     """Get a random set of images for a game mode.
