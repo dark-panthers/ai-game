@@ -3,6 +3,10 @@ import { useState, useEffect } from 'react'
 import './MatchGame.css'
 import MatchGameRound from './components/MatchGameRound'
 function MatchGame({match, duration, mode}) {
+
+    // const { id } = useParams();
+
+    
     // let gameId = match.params.id
     let gameId = 1
     const maxImageId = 5

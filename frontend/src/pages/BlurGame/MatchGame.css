@@ -2,7 +2,7 @@
     overflow: hidden;
     width: min(100%, 600px);
 }
-img{
+.blurGameContainer img{
     width: 100%;
     height: 50vh;
     object-fit: cover;
@@ -10,7 +10,7 @@ img{
     transition: filter 0.5s;
 }
 
-.easy{
+ .easy{
     filter: blur(10px);
 }
 .medium{

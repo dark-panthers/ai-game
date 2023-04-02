@@ -1,5 +1,5 @@
 import "./GameStart.css";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Tutorial from "./../../Tutorial";
 import GameShare from "./../../GameShare";
@@ -9,7 +9,10 @@ export default function GameStart() {
 
   const { id } = useParams();
 
+  
   const [game,setGame] = useState(null);
+  
+  const [settings, setSettings] = useState({mode:'medium',duration:20});
 
     useEffect(() => {
         fetch("/api/games/?format=json")
@@ -66,12 +69,19 @@ export default function GameStart() {
         {tutorialVisibility ? <Tutorial closeWindow={toggleTutorialVisibility} description={game.description} faq={game.faq}/> : ""}
         {GameShareVisibility ? <GameShare closeWindow={toggleGameShareVisibility} link={"https://www.youtube.com/watch?v=dQw4w9WgXcQ"} /> : ""}
         {GameSettingsVisibility ? <GameSettings 
-        closeWindow={toggleGameSettingsVisibility}  />:""}
+        settings={settings}
+        setSettings={setSettings}
+        closeWindow={()=>{
+          toggleGameSettingsVisibility();
+        }}  />:""}
       </div>
       <div className="start-box">
-        <button>
+      <Link style={{ color: 'inherit', textDecoration: 'inherit'}} params={settings?{ duration:settings.duration, mode:settings.mode }:{mode:'medium',duration:20}} to={"/game/"+id}>
+      <button>
           <h3>start</h3>
         </button>
+        </Link>
+    
       </div>
       <div className="settings-gear-box">
         <img onClick={toggleGameSettingsVisibility}
