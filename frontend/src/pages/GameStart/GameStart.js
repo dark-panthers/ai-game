@@ -1,7 +1,22 @@
-import "./GameStartPage.css";
+import "./GameStart.css";
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 
-export default function GameStartPage({ game }) {
-  console.log(game);
+export default function Game() {
+
+  const { id } = useParams();
+
+  const [game,setGame] = useState(null);
+
+    useEffect(() => {
+        fetch("/api/game/"+id+"/?format=json")
+        .then(response => {
+          return response.json()
+        })
+        .then(data => {
+          setGame(data)
+        })
+       }, []);
 
   return (
     <div className="game-start-page">

@@ -3,6 +3,8 @@ import './App.css';
 import Home from './pages/Home/Home';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NoPage from './pages/NoPage';
+import GameStart from './pages/GameStart/GameStart';
+import Game from './pages/GameStart/GameStart';
 
 function App() {
   return (
@@ -11,6 +13,8 @@ function App() {
        
       <Routes>
           <Route index element={<Home />} />
+          <Route path="/gamestart/:id" element={<GameStart />} />
+          <Route path="/game/:id" element={<Game />} />
           <Route path="*" element={<NoPage />} />
       </Routes>
     </BrowserRouter>

@@ -7,16 +7,16 @@
 
     text-align: center;
 
-    box-shadow: rgba(0, 0, 0, 0.13) 0px 0px 10px 5px;
 
     transition: all 0.1s ease-in-out;
 
     cursor:pointer;
 }
-
 .gamebox h1{
     font-weight: bold;
     margin-top: 10px;
+    text-decoration: none;
+    
 }
 
 .gamebox .image{

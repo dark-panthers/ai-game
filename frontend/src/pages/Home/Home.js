@@ -22,9 +22,9 @@ const Home = () => {
     }
 
     return ( <div className='home'>
-        <div  className="home-logo" >
-        <img src={getPath()} alt="logo"></img>
-        </div>
+        <h1  className="home-logo" >
+            GuessWhat
+        </h1>
 
         <div className='home-games'>
             { games.map(game=>

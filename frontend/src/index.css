@@ -1,8 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap');
 
 *{
-  font-family: 'Varela Round', sans-serif;
-
+  font-family: 'Raleway', sans-serif;
 }
 
 html, body, #root,.App{
@@ -11,23 +10,18 @@ html, body, #root,.App{
 }
 
 body {
-  background-color: rgb(226, 226, 226);
+  background-color: rgb(60, 60, 60);
 
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 /*COLORS*/
 .bcolor-gray
 {
-  background-color: rgba(255, 195, 67, 0.2);
+  background-color: rgba(219, 219, 219, 0.5);
 }
 
 .color-black
 {
- color:black
+ color:rgb(39, 39, 39)
 }
