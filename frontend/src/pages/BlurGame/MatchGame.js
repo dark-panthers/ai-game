@@ -24,7 +24,7 @@ function MatchGame({match, duration, mode}) {
 
     let getGameSet = async() => {
         // Replace with your server API to fetch images and prompts
-        let data = await fetch(`/api/games/${gameId}/randomGameSet/`).then((res) => res.json())
+        let data = await fetch(`/api/games/${gameId}`).then((res) => res.json())
         const n = data.length
         const chosen = Math.floor(Math.random() * n)
         setRounds(rounds => [...rounds, {image: data[chosen].image, answer: data[chosen].prompt, prompts: shufflePromts(data)}])

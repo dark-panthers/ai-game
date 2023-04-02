@@ -23,7 +23,7 @@ const Home = () => {
 
     return ( <div className='home'>
         <h1  className="home-logo" >
-            GuessWhat
+          <b>GuessWhat</b>  
         </h1>
 
         <div className='home-games'>
