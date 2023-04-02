@@ -20,10 +20,6 @@ def round():
     serializer = ImageSerializer(selected_images, many=True)
     return serializer.data
 
-@dataclass
-class Round:
-    votes: dict[str, bool]
-
 class PlayerConsumer(WebsocketConsumer):
     def connect(self):
         self.game_code = self.scope["url_route"]["kwargs"]["code"]
@@ -34,15 +30,11 @@ class PlayerConsumer(WebsocketConsumer):
             self.game_name, self.channel_name
         )
 
-        session = Session.objects.get(code=self.game_code)
-        Player(session_id=session.id, nick=self.nick).save()
+        self.session = Session.objects.get(code=self.game_code)
+        Player(session_id=self.session.id, nick=self.nick).save()
 
         self.accept()
     
-    def send_layer(self, event):
-        async_to_sync(self.channel_layer.group_send)(
-            self.game_name, {"type": "event", "event": json.dumps(event)}
-        )
 
     def disconnect(self, close_code):
         async_to_sync(self.channel_layer.group_discard)(
@@ -50,8 +42,9 @@ class PlayerConsumer(WebsocketConsumer):
         )
 
     def receive(self, text_data):
-        event = json.loads(text_data)
-        self.send_layer(event)
+        async_to_sync(self.channel_layer.group_send)(
+            self.game_name, {"type": "event", "event": text_data}
+        )
     
     def event(self, event_message):
         event = event_message['event']
@@ -70,17 +63,24 @@ class HostConsumer(WebsocketConsumer):
 
         self.accept()
 
-        session = Session.objects.get(code=self.game_code)
-        Player(session_id=session.id, nick=self.nick).save()
+        self.session = Session.objects.get(code=self.game_code)
+        Player(session_id=self.session.id, nick=self.nick).save()
+        
+        self.players = len(Player.objects.filter(session_id=self.session.id))
+        print(self.players)
+        self.max_rounds = 4
         
 
         self.current_round = 0
-        self.rounds = [Round(votes = {})]
+        self.rounds = [{} for _ in range(self.max_rounds)]
 
         event = {"type": "round", "data": round()}
         self.send_layer(event)
 
     def send_layer(self, event):
+        print("Send layer")
+        print(event)
+        print(type(event))
         async_to_sync(self.channel_layer.group_send)(
             self.game_name, {"type": "event", "event": json.dumps(event)}
         )
@@ -91,11 +91,37 @@ class HostConsumer(WebsocketConsumer):
         )
 
     def receive(self, text_data):
-        event = json.loads(text_data)
-        print(event)
+        self.send_layer(text_data)
     
     def event(self, event_message):
-        event = event_message['event']
-        self.send(text_data=event)
+        event = json.loads(event_message['event'])
+        if type(event) == str:
+            event = json.loads(event)
+        print("Recieved in host")
+        print(event)
+        print(type(event))
 
+        if event["type"] == "vote":
+            nick = event["data"]["nick"]
+            correct = event["data"]["correct"]
+            self.rounds[self.current_round][nick] = correct
+            print(self.rounds)
+
+            if len(self.rounds[self.current_round]) == self.players:
+                self.current_round += 1
+            
+                if self.current_round < self.max_rounds:
+                    # send another round
+                    self.send_layer({"type": "round", "data": round()})
+                else:
+                    # send results
+                    nicks = Player.objects.filter(session_id=self.session.id).values_list('nick', flat=True)
+                    res = {n: 0 for n in nicks}
+                    for nick in nicks:
+                        for r in range(self.max_rounds):
+                            if self.rounds[r][nick]:
+                                res[nick] += 1
+                    self.send_layer({"type": "results", "data": json.dumps(res)})
         
+        if event["type"] == "round" or event['type'] == "results":
+            self.send(text_data=json.dumps(event))

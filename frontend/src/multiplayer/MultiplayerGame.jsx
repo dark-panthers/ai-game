@@ -1,21 +1,9 @@
 import { useParams } from "react-router-dom";
 import { useRef, useEffect, useState } from "react";
 
-const imageBox = (box) => {
-  return <div>
-    <div>
-      {box.prompt}
-    </div>
-    <img src={box.image} width={200} height={200} alt="not found"/>
-  </div>
+function getRandomInt(max) {
+  return Math.round(Math.random() * (max - 1)); // The maximum is exclusive and the minimum is inclusive
 }
-
-const renderRound = (round) => {
-  return <div>
-    {round.map(s => imageBox(s))}
-  </div>
-}
-
 
 export const MultiplayerGame = () => {
   const { code, nick, type } = useParams();
@@ -40,6 +28,11 @@ export const MultiplayerGame = () => {
         setRound(message.data);
         setWaiting(false);
       }
+
+      if (message.type === "results") {
+        setResults(message.data)
+        setWaiting(false)
+      }
     };
 
     return () => {
@@ -56,6 +49,15 @@ export const MultiplayerGame = () => {
       },
     };
     ws.current.send(JSON.stringify(event));
+    setWaiting(true)
+  };
+
+  const imageBox = (box, correct) => {
+    return (
+      <div onClick={() => submit(correct)}>
+        <img src={box.image} width={200} height={200} alt="not found" />
+      </div>
+    );
   };
 
   let content;
@@ -64,7 +66,14 @@ export const MultiplayerGame = () => {
   } else if (results) {
     content = <div>{JSON.stringify(results)}</div>;
   } else {
-    content = <div>{renderRound(round)}</div>;
+    const correct = getRandomInt(round.length);
+    const prompt = round[correct].prompt;
+    content = (
+      <div>
+        <div>{prompt}</div>
+        <div>{round.map((s, i) => imageBox(s, i === correct))}</div>;
+      </div>
+    );
   }
 
   return (
