@@ -29,3 +29,15 @@ header{
   width: 30px;
   cursor: pointer;
 }
+
+
+
+.choice{
+  display: flex;
+  justify-content: space-around;
+}
+
+.choice-option{
+  padding: 10px;
+  cursor: pointer;
+}

@@ -24,6 +24,7 @@ export default function GameStart() {
   const [tutorialVisibility, setTutorialVisiility] = useState(false);
   const [GameShareVisibility, setGameShareVisiility] = useState(false);
   const [GameSettingsVisibility, setGameSettingsVisibility] = useState(false);
+  const [settings, setSettings] = useState({level:1,time:20});
 
 
   function toggleTutorialVisibility(){
@@ -60,7 +61,7 @@ export default function GameStart() {
         {tutorialVisibility ? <Tutorial closeWindow={toggleTutorialVisibility} /> : ""}
         {GameShareVisibility ? <GameShare closeWindow={toggleGameShareVisibility} link={"https://www.youtube.com/watch?v=dQw4w9WgXcQ"} /> : ""}
         {GameSettingsVisibility ? <GameSettings 
-        closeWindow={toggleGameSettingsVisibility} />:""}
+        closeWindow={toggleGameSettingsVisibility} settings ={settings} setSettings={setSettings} />:""}
       </div>
       <div className="start-box">
         <button>
