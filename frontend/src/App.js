@@ -6,6 +6,7 @@ import NoPage from './pages/NoPage';
 import GameStart from './pages/GameStart/GameStart';
 import Game from './pages/GameStart/GameStart';
 import React, { Component }  from 'react';
+import OrderingGame from "./pages/OrderingGame/OrderingGame";
 
 const game={
   title:"game title"
@@ -22,6 +23,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path="/gamestart/:id" element={<GameStart />} />
           <Route path="/game/:id" element={<Game />} />
+          <Route path="/ordering_game" element={<OrderingGame />} />
           <Route path="*" element={<NoPage />} />
       </Routes>
     </BrowserRouter>
