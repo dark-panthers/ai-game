@@ -2,12 +2,14 @@ import "./GameStartPage.css";
 import {useState} from "react"
 import Tutorial from "./Tutorial";
 import GameShare from "./GameShare";
+import GameSettings from "./GameSettings";
 
 export default function GameStartPage({ game }) {
   console.log(game);
 
   const [tutorialVisibility, setTutorialVisiility] = useState(false);
   const [GameShareVisibility, setGameShareVisiility] = useState(false);
+  const [GameSettingsVisibility, setGameSettingsVisibility] = useState(false);
 
 
   function toggleTutorialVisibility(){
@@ -28,12 +30,23 @@ export default function GameStartPage({ game }) {
     }
   }
 
+  function toggleGameSettingsVisibility(){
+    if(GameSettingsVisibility === false){
+      setGameSettingsVisibility(true);
+    }
+    else{
+      setGameSettingsVisibility(false);
+    }
+  }
+
   return (
     <div className="game-start-page">
       <div className="title-box">
         <h1 className="title">{game.title}</h1>
-        {tutorialVisibility ? <Tutorial onclick={toggleTutorialVisibility} /> : ""}
-        {GameShareVisibility ? <GameShare onclick={toggleGameShareVisibility} link={"https://www.youtube.com/watch?v=dQw4w9WgXcQ"} /> : ""}
+        {tutorialVisibility ? <Tutorial closeWindow={toggleTutorialVisibility} /> : ""}
+        {GameShareVisibility ? <GameShare closeWindow={toggleGameShareVisibility} link={"https://www.youtube.com/watch?v=dQw4w9WgXcQ"} /> : ""}
+        {GameSettingsVisibility ? <GameSettings 
+        closeWindow={toggleGameSettingsVisibility} />:""}
       </div>
       <div className="start-box">
         <button>
@@ -41,7 +54,9 @@ export default function GameStartPage({ game }) {
         </button>
       </div>
       <div className="settings-gear-box">
-        <img src={process.env.PUBLIC_URL + "/icons/gear.svg"} alt="ooops"></img>
+        <img onClick={toggleGameSettingsVisibility}
+        src={process.env.PUBLIC_URL + "/icons/gear.svg"} 
+        alt="ooops"></img>
       </div>
       <div className="top-right">
         <img onClick={toggleGameShareVisibility}
