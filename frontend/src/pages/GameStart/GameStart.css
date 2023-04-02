@@ -6,7 +6,7 @@ h1 {
 }
 
 .game-start-page {
-  max-width: 800px;
+  width: 800px;
   min-height: 500px;
   margin: 0;
   border: 5px solid #00cccc;
