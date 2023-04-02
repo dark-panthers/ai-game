@@ -11,7 +11,7 @@
 }
 
  .easy{
-    filter: blur(10px);
+    filter: blur(5px);
 }
 .medium{
     filter: blur(10px) sepia(0.5) grayscale(0.5);

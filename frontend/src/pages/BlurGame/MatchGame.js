@@ -2,11 +2,18 @@ import React, { useRef } from 'react'
 import { useState, useEffect } from 'react'
 import './MatchGame.css'
 import MatchGameRound from './components/MatchGameRound'
-import CountdownTimer from './'
-function MatchGame({match, duration, mode}) {
+import CountdownTimer from '../Components/Counter/CountdownTimer'
+import { useLocation, useParams } from 'react-router-dom'
+
+function MatchGame() {
     let NOW_IN_MS = new Date().getTime();
-    const [endTime, setEndTime] = useState(NOW_IN_MS + duration)
-    
+
+    const location = useLocation();
+    const {duration, mode} = location.state;
+
+
+    const [endTime, setEndTime] = useState(NOW_IN_MS + duration*1000)
+
     let gameId = 1
     const maxImageId = 5
     // const api = 'http://localhost:8000'
@@ -43,7 +50,7 @@ function MatchGame({match, duration, mode}) {
         setCurrentRoundId(0)
         score.current = 0
         setRounds([])
-        setEndTime(new Date().getTime() + duration)
+        setEndTime(new Date().getTime() + duration*1000)
     }
 
     let onSubmitAnswer = (currentAnswer) => {
