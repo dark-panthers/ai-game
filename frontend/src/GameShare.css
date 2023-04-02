@@ -42,3 +42,14 @@ header{
     padding: 10px;
     cursor: pointer;
 }
+
+.multi-form{
+    
+}
+
+.multi-form label{
+    margin: 20px;
+}
+.multi-form input{
+    margin-bottom: 20px;
+}
