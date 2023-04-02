@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import './MatchGame.css'
 import MatchGameRound from './components/MatchGameRound'
 import CountdownTimer from '../Components/Counter/CountdownTimer'
-import { useLocation, useParams } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 
 function MatchGame() {
     let NOW_IN_MS = new Date().getTime();
@@ -75,9 +75,10 @@ function MatchGame() {
         reset()
     }
 
-    return (
-        <>
-            <CountdownTimer targetDate={endTime} callback={onTimeUp} />
+    return (<>
+
+        <CountdownTimer targetDate={endTime} callback={onTimeUp} />
+        <div className="outer">
             <div className='blurGameContainer'>
                 { rounds.length > 0 ? (
                     <MatchGameRound
@@ -92,7 +93,9 @@ function MatchGame() {
 
                 
             </div>
-        </>
+        </div>
+    </>
+
     )
 }
 

@@ -1,5 +1,8 @@
+.outer{
+    display: flex;
+    justify-content: center;
+}
 .blurGameContainer{
-    overflow: hidden;
     width: min(100%, 600px);
 }
 .blurGameContainer img{
@@ -64,5 +67,6 @@
 .nextButton:hover{
     background-color: rgb(55, 230, 55);
 }
+
 
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, {useEffect, useState} from 'react';
 import GameResult from "./GameResult";
 
 function OrderingGame() {
@@ -20,12 +20,11 @@ function OrderingGame() {
             .then(response => response.json())
             .then(data => {
                 let photos = data.map(photo => photo.image);
-                const prompts = data.map(photo => photo.prompt);
+                let prompts = data.map(photo => photo.prompt);
 
-                shufflePrompts(prompts);
-
-                setPhotos(photos);
+                prompts = shufflePrompts(prompts);
                 setPrompts(prompts);
+                setPhotos(photos);
 
                 setGameState("playing");
 
@@ -39,8 +38,7 @@ function OrderingGame() {
         const newPromptOrder = prompts.map((_, index) => index).sort(() => Math.random() - 0.5);
         setPromptOrder(newPromptOrder);
         // shuffle the prompts
-        const newPrompts = newPromptOrder.map(index => prompts[index]);
-        setPrompts(newPrompts);
+        return newPromptOrder.map(index => prompts[index]);
     };
 
     const handleSelection = (event, index) => {
@@ -149,6 +147,11 @@ function OrderingGame() {
                         onClick={() => loadGame()}
                         >Restart</button>
             </div>
+            {/* eslint-disable-next-line react/style-prop-object */}
+            <div className="text-center" style={{opacity: 0.05}}>
+                { promptOrders.map((order, index) => (order + 1) + " ")}
+            </div>
+
 
         </div>
     );
