@@ -19,7 +19,7 @@ export default function GameShare({onclick,link}){
         setChoiceMulti(1);
     }
     return (
-        <div className="window" onClick={onclick}>
+        <div className="window" onClick={onclick}>git
             <div className="inner" onClick={handlePropagation} >
                 <header>
                     <h3>Multiplayer</h3>
