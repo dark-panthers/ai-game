@@ -61,6 +61,7 @@ filter:invert(75%)}
     transition: right 1s ease-in-out;
 
     background-color: rgb(44, 44, 44);
+    color: rgb(216, 216, 216);
     
 }
 
