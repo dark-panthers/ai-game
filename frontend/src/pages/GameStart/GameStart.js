@@ -18,9 +18,10 @@ export default function GameStart() {
           
         })
         .then(data => {
-          console.log(data[0].id);
+          
           const data2  =data.filter((g)=>{
             return  g.id == id}).shift();
+            console.log(data2);
           setGame(data2);
         })
        }, []);
@@ -28,7 +29,7 @@ export default function GameStart() {
   const [tutorialVisibility, setTutorialVisiility] = useState(false);
   const [GameShareVisibility, setGameShareVisiility] = useState(false);
   const [GameSettingsVisibility, setGameSettingsVisibility] = useState(false);
-  const [settings, setSettings] = useState({level:1,time:20});
+  
 
 
   function toggleTutorialVisibility(){
@@ -62,10 +63,10 @@ export default function GameStart() {
     <div className="game-start-page">
       <div className="title-box">
         <h1 className="title">{game ? game.name : ""}</h1>
-        {tutorialVisibility ? <Tutorial closeWindow={toggleTutorialVisibility} /> : ""}
+        {tutorialVisibility ? <Tutorial closeWindow={toggleTutorialVisibility} description={game.description} faq={game.faq}/> : ""}
         {GameShareVisibility ? <GameShare closeWindow={toggleGameShareVisibility} link={"https://www.youtube.com/watch?v=dQw4w9WgXcQ"} /> : ""}
         {GameSettingsVisibility ? <GameSettings 
-        closeWindow={toggleGameSettingsVisibility} settings ={settings} setSettings={setSettings} />:""}
+        closeWindow={toggleGameSettingsVisibility}  />:""}
       </div>
       <div className="start-box">
         <button>

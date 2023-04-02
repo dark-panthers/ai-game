@@ -1,6 +1,6 @@
 import "./Tutorial.css"
 
-export default function Tutorial({closeWindow}){
+export default function Tutorial({closeWindow,description,faq}){
     function handlePropagation(event){
         event.stopPropagation();
     }
@@ -13,15 +13,17 @@ export default function Tutorial({closeWindow}){
                 <img src={process.env.PUBLIC_URL + "/icons/x.svg"} alt="ooppss" onClick={closeWindow}></img>
                 <div className="instruction">
                     <h4>Instruction</h4>
-                    <ol>
-                        <li></li>
-                    </ol>
+                     <p>
+                        {description}
+
+                     </p>                           
+                    
                 </div>
                 <div className="faq">
                     <h4>FAQ</h4>
-                    <ol>
-                        <li></li>
-                    </ol>
+                    <p>
+                        {faq ? {faq} : ""}
+                    </p>
                 </div>
             </div>
 
