@@ -84,9 +84,9 @@ function OrderingGame() {
                         </thead>
                         <tbody>
                         {photos.map((photo, index) => (
-                            <tr key={photo.id}>
+                            <tr>
                                 <td>{index + 1}</td>
-                                <td><img src={photo.image} alt={`Photo ${photo.id}`} className="img-fluid" /></td>
+                                <td><img src={photo} alt={`Photo`} className="img-fluid" /></td>
                             </tr>
                         ))}
                         </tbody>
