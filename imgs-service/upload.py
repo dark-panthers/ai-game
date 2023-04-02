@@ -1,5 +1,6 @@
 import json
 import os
+import random
 
 import requests
 
@@ -35,11 +36,11 @@ if __name__ == "__main__":
         try:
             files = os.listdir(f"{BASE_DIR}/{dir}")
             assert files != []
-            if "category" in files:
-                category = open(f"{BASE_DIR}/{dir}/category").read().strip()
-                game_id = game_ids[category]
-            else:
-                game_id = game_ids["random"]
+            # if "category" in files:
+            #     category = open(f"{BASE_DIR}/{dir}/category").read().strip()
+            #     game_id = game_ids[category]
+            # else:
+            game_id = random.choice([1, 2])
 
             with open(f"{BASE_DIR}/{dir}/data.json") as f:
                 data = json.load(f)
