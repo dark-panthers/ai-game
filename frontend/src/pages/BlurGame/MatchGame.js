@@ -2,7 +2,7 @@ import React, { useRef } from 'react'
 import { useState, useEffect } from 'react'
 import './MatchGame.css'
 import MatchGameRound from './components/MatchGameRound'
-import CountdownTimer from './'
+import CountdownTimer from '../Components/Counter/CountdownTimer'
 function MatchGame({match, duration, mode}) {
     let NOW_IN_MS = new Date().getTime();
     const [endTime, setEndTime] = useState(NOW_IN_MS + duration)
