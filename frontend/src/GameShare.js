@@ -1,7 +1,7 @@
 import "./GameShare.css"
 import {useState} from "react"
 
-export default function GameShare({onclick,link}){
+export default function GameShare({closeWindow,link}){
     const [choiceMulti,setChoiceMulti] = useState(-1);
     
     const styleLeft = "{background-color: green}"
@@ -19,7 +19,7 @@ export default function GameShare({onclick,link}){
         setChoiceMulti(1);
     }
     return (
-        <div className="window" onClick={onclick}>git
+        <div className="window" onClick={closeWindow}>
             <div className="inner" onClick={handlePropagation} >
                 <header>
                     <h3>Multiplayer</h3>
@@ -38,9 +38,9 @@ export default function GameShare({onclick,link}){
                         Join existing room
                     </div>
                 </div>
-                {choiceMulti === -1 ? <ownRoom /> : <someonensRoom />}
-                <img src={process.env.PUBLIC_URL + "/icons/x.svg"} alt="ooppss" onClick={onclick}></img>
-                <ownRooms link={link} />
+                {choiceMulti === -1 ? <OwnRoom link={link}/> : <SomeonesRooms />}
+                <img src={process.env.PUBLIC_URL + "/icons/x.svg"} alt="ooppss" onClick={closeWindow}></img>
+                
             </div>
 
         </div>
@@ -49,7 +49,7 @@ export default function GameShare({onclick,link}){
 
 
 
-function ownRoom({link}){
+function OwnRoom({link}){
     return (
         <div>
              <a href={link} className="linkToShare">{link}</a>
@@ -57,15 +57,14 @@ function ownRoom({link}){
     )
 }
 
-function someonensRooms({}){
+function SomeonesRooms({}){
     return(
         <div>
-            <ul>
+            <ol>
                 <li>
                     <h5 className="room-name"></h5>
                 </li>
-                
-            </ul>
+            </ol>
         </div>
     )
 }
