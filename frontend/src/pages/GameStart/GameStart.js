@@ -63,6 +63,9 @@ export default function GameStart() {
   }
 
   return (
+    <div className="outer">
+      
+
     <div className="game-start-page">
       <div className="title-box">
         <h1 className="title">{game ? game.name : ""}</h1>
@@ -98,6 +101,7 @@ export default function GameStart() {
           alt="ooops"
         ></img>
       </div>
+    </div>
     </div>
   );
 }
