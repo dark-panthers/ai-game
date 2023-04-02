@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NoPage from './pages/NoPage';
 import GameStart from './pages/GameStart/GameStart';
 import Game from './pages/GameStart/GameStart';
+import React, { Component }  from 'react';
 
 const game={
   title:"game title"
@@ -12,7 +13,9 @@ const game={
 
 function App() {
   return (
+    
     <div className="App">
+
        <BrowserRouter>
        
       <Routes>
