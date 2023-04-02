@@ -121,7 +121,8 @@ class HostConsumer(WebsocketConsumer):
                         for r in range(self.max_rounds):
                             if self.rounds[r][nick]:
                                 res[nick] += 1
-                    self.send_layer({"type": "results", "data": json.dumps(res)})
+                    t = [{"nick": o, "score": q} for o, q in res.items()]
+                    self.send_layer({"type": "results", "data": json.dumps(t)})
         
         if event["type"] == "round" or event['type'] == "results":
             self.send(text_data=json.dumps(event))

@@ -30,8 +30,8 @@ export const MultiplayerGame = () => {
       }
 
       if (message.type === "results") {
-        setResults(message.data)
-        setWaiting(false)
+        setResults(JSON.parse(message.data));
+        setWaiting(false);
       }
     };
 
@@ -49,7 +49,7 @@ export const MultiplayerGame = () => {
       },
     };
     ws.current.send(JSON.stringify(event));
-    setWaiting(true)
+    setWaiting(true);
   };
 
   const imageBox = (box, correct) => {
@@ -64,7 +64,12 @@ export const MultiplayerGame = () => {
   if (waiting) {
     content = <div>Waiting...</div>;
   } else if (results) {
-    content = <div>{JSON.stringify(results)}</div>;
+    console.log(results)
+    content = results.map((r) => (
+      <div>
+        {r.nick} {"->"} {r.score}
+      </div>
+    ));
   } else {
     const correct = getRandomInt(round.length);
     const prompt = round[correct].prompt;
