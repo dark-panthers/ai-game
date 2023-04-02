@@ -3,9 +3,8 @@ import {useState} from "react"
 
 export default function GameShare({closeWindow,link}){
     const [choiceMulti,setChoiceMulti] = useState(-1);
+    const [multiSettings, setMultiSettings] = useState({nick:"",token:"",list:[]})
     
-    const styleLeft = "{background-color: green}"
-
     function handlePropagation(event){
         event.stopPropagation();
     }
@@ -14,10 +13,23 @@ export default function GameShare({closeWindow,link}){
         console.log("left");
         setChoiceMulti(-1);
     }
+
     function chooseRight(){
         console.log("right");
         setChoiceMulti(1);
     }
+
+    function setNick(val){
+        setMultiSettings({...multiSettings,nick:val});
+    }
+    function setToken(val){
+        setMultiSettings({...multiSettings,token:val});
+    }
+    function reqMulit(){
+        //load from server
+
+    }
+
     return (
         <div className="window" onClick={closeWindow}>
             <div className="inner" onClick={handlePropagation} >
@@ -39,6 +51,18 @@ export default function GameShare({closeWindow,link}){
                     </div>
                 </div>
                 {choiceMulti === -1 ? <OwnRoom link={link}/> : <SomeonesRooms />}
+
+                <div className="multi-form">
+                    <label for="nick">Nick</label>
+                    <input id="nick" onChange={(event)=>{setNick(event.target.value)}} /> 
+                    <br />
+                    <label for="token" onChange={(event)=>{setToken(event.target.value)}} >Token</label>
+                    <input id="token" />
+                    <br />
+                    <p>Player list</p>
+                    
+                    <SomeonesRooms players={[]} />
+                </div>
                 <img src={process.env.PUBLIC_URL + "/icons/x.svg"} alt="ooppss" onClick={closeWindow}></img>
                 
             </div>
@@ -66,5 +90,17 @@ function SomeonesRooms({}){
                 </li>
             </ol>
         </div>
+    )
+}
+
+function playersList({players}){
+    const htmlList = players.map((player)=>{
+        <li>{player.name}</li>
+    })
+
+    return(
+        <ul>
+        {htmlList}
+        </ul>
     )
 }
