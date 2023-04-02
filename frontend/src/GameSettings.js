@@ -30,7 +30,7 @@ export default function GameSettings({ closeWindow, settings, setSettings }) {
         <div>
           <div
             id="left"
-            class="choice-option"
+            class="choice"
             style={{
               backgroundColor: settings.level === 1 ? "green" : "white",
             }}

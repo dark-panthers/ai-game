@@ -12,12 +12,16 @@ export default function GameStart() {
   const [game,setGame] = useState(null);
 
     useEffect(() => {
-        fetch("/api/game/"+id+"/?format=json")
+        fetch("/api/games/?format=json")
         .then(response => {
           return response.json()
+          
         })
         .then(data => {
-          setGame(data)
+          console.log(data[0].id);
+          const data2  =data.filter((g)=>{
+            return  g.id == id}).shift();
+          setGame(data2);
         })
        }, []);
 
@@ -57,7 +61,7 @@ export default function GameStart() {
   return (
     <div className="game-start-page">
       <div className="title-box">
-        <h1 className="title">{game.title}</h1>
+        <h1 className="title">{game ? game.name : ""}</h1>
         {tutorialVisibility ? <Tutorial closeWindow={toggleTutorialVisibility} /> : ""}
         {GameShareVisibility ? <GameShare closeWindow={toggleGameShareVisibility} link={"https://www.youtube.com/watch?v=dQw4w9WgXcQ"} /> : ""}
         {GameSettingsVisibility ? <GameSettings 
