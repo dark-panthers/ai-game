@@ -1,13 +1,11 @@
 import "./GameStart.css";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import "./GameStartPage.css";
-import {useState} from "react"
-import Tutorial from "./Tutorial";
-import GameShare from "./GameShare";
-import GameSettings from "./GameSettings";
+import Tutorial from "./../../Tutorial";
+import GameShare from "./../../GameShare";
+import GameSettings from "./../../GameSettings";
 
-export default function Game() {
+export default function GameStart() {
 
   const { id } = useParams();
 
