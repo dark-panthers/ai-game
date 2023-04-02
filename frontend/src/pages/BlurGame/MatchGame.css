@@ -9,12 +9,11 @@
     width: 100%;
     height: 50vh;
     object-fit: cover;
-    filter: blur(10px);
     transition: filter 0.5s;
 }
 
  .easy{
-    filter: blur(10px);
+    filter: blur(0px);
 }
 .medium{
     filter: blur(10px) sepia(0.5) grayscale(0.5);

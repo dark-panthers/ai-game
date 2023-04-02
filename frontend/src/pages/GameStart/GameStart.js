@@ -1,5 +1,5 @@
 import "./GameStart.css";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Tutorial from "./components/Tutorial";
 import GameShare from "./components/GameShare";
@@ -60,7 +60,15 @@ export default function GameStart() {
     else{
       setGameSettingsVisibility(false);
     }
+  
   }
+
+  const navigate = useNavigate();
+  const handleOnClick = ()=>{
+    console.log(settings)
+    navigate(`/game/${id}`,{state:{duration:settings.duration, mode:settings.mode}})
+  }
+
 
   return (
     <div className="outer">
@@ -79,11 +87,9 @@ export default function GameStart() {
         }}  />:""}
       </div>
       <div className="start-box">
-      <Link style={{ color: 'inherit', textDecoration: 'inherit'}} params={settings?{ duration:settings.duration, mode:settings.mode }:{mode:'medium',duration:20}} to={"/game/"+id}>
-      <button>
+      <button onClick={handleOnClick}>
           <h3>start</h3>
         </button>
-        </Link>
     
       </div>
       <div className="settings-gear-box">
