@@ -1,4 +1,3 @@
-import React from "react";
 
 const GameResult = ({ message, is_good }) => {
     const backgroundColor = is_good ? "green" : "red";
