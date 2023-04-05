@@ -2,14 +2,14 @@ version: '3.7'
 
 services:
   frontend:
-    image: mateuszn65/aigame:frontend
+    build: ./frontend
     ports:
       - 3001:80
     volumes:
       - ./frontend:/app
 
   backend:
-    image: mateuszn65/aigame:backend
+    build: ./backend
     depends_on:
       - redis
 
