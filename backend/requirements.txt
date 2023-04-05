@@ -1,5 +1,7 @@
 django
 djangorestframework
 django-cors-headers
-django-channels
+asgiref
+Pillow
 daphne
+channels-redis
