@@ -3,3 +3,6 @@ djangorestframework
 django-cors-headers
 django-channels
 daphne
+channels
+channels-redis
+Pillow
