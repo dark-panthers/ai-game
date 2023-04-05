@@ -19,3 +19,9 @@ cd frontend
 npm i
 npm start
 ```
+### MOCKUPS
+Zdjęcie przedstawiające wizje naszej aplikacji od strony Front-Endu:
+![alt text](https://github.com/dark-panthers/ai-game/blob/main/mockup.jpeg)
+Zawarte są w niej szkice poszczególnych podstron: Home Page, Start Page, Game Page
+
+Oficjalna wersja stylizacji CSS, była przeprowadzona po zakończeniu pracy nad wszystkimi podstronami, by ujednolicić motyw.
