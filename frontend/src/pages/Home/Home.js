@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link} from "react-router-dom";
 import GameBox from './components/GameBox';
 import "./Home.css"
 
@@ -18,9 +19,15 @@ const Home = () => {
 
 
     return ( <div className='home'>
+        <h2 className='multi-link'>
+          <Link to={"/multiplayer/"}>
+            Multiplayer
+          </Link>
+        </h2>
         <h1  className="home-logo" >
           <b>GuessWhat</b>  
         </h1>
+        
 
         <div className='home-games'>
             { games.map(game=>

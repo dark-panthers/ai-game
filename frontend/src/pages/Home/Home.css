@@ -34,3 +34,19 @@
     display: flex;
 
 }
+
+.multi-link{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-weight: bold;
+    background-image: -webkit-linear-gradient(0deg, red 0%, blue 51%, red 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% auto;
+    transition: .5s;
+}
+
+.multi-link:hover{
+    background-position: right center
+}
