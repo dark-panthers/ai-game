@@ -13,9 +13,15 @@ export const MultiplayerGame = () => {
   const [round, setRound] = useState(null);
 
   useEffect(() => {
+    const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+    const host = window.location.host;
+    console.log("host: " + host)
     ws.current = new WebSocket(
-      `ws://localhost:8000/ws/game/${type}/${code}/${nick}/`
+      `${protocol}//${host}/ws/game/${type}/${code}/${nick}/`
     );
+    // ws.current = new WebSocket(
+    //   `ws://localhost:8000/ws/game/${type}/${code}/${nick}/`
+    // );
     ws.current.onopen = () => console.log("ws opened");
     ws.current.onclose = () => console.log("ws closed");
 
